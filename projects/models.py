@@ -4,9 +4,9 @@ class Tag(models.Model):
     name = models.CharField(max_length=50)
 
 
-
 class Category(models.Model):
     name = models.CharField(max_length=50)
+
 
 class Project(models.Model):
     title = models.CharField(max_length=100)
@@ -17,7 +17,6 @@ class Project(models.Model):
     pub_date = models.DateTimeField()
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-
 
 
 class Photo(models.Model):
