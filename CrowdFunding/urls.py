@@ -17,19 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
-from projects.views import *
-from myaccount.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # ------users url routing-------
-    path('users/', include('users.urls')),
-    # ------projects url routing-----------
-    path('project/', include('project.urls')),
-    # ------route login ,logout ,reg------
-    path('', Login, name='Login'),
-    path('Logout', Logout, name='Logout'),
-    path('Registration', Registration, name='Registration'),
-    # ------user list routing-----------
-    path('list/', user_list, name='user_list'),
 ]
