@@ -104,7 +104,7 @@ def projectView(request,ID):
     for rate in rates:
         totalrate=totalrate+rate.rate
     if len(rates)>0:
-        totalrate=totalrate/(len(rates)*5)
+        totalrate=totalrate/(len(rates))
     context['totalrate']=totalrate
     
     tags=project.tags.filter(project=ID)
