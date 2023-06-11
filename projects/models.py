@@ -1,5 +1,5 @@
 from django.db import models
-
+from myaccount.models import *
 class Tag(models.Model):
     name = models.CharField(max_length=50)
 
@@ -17,7 +17,7 @@ class Project(models.Model):
     pub_date = models.DateTimeField()
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-
+    owner=models.ForeignKey(user_reg, on_delete=models.CASCADE,default=1)
 
 class Photo(models.Model):
     
@@ -25,3 +25,17 @@ class Photo(models.Model):
     image = models.FileField(upload_to='photos/')
     # image = models.FileField()
 
+class Comment(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(user_reg, on_delete=models.CASCADE)
+    comment = models.TextField()
+    
+class Donation(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(user_reg, on_delete=models.CASCADE)
+    amount = models.FloatField()
+
+class Report(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(user_reg, on_delete=models.CASCADE)
+    report = models.BooleanField(default=False)
