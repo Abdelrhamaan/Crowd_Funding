@@ -20,8 +20,10 @@
       <th>Total Rate</th>
       <th>start_date</th>
       <th>end_date</th>
+      <th> Tags</th>
       <th>creator</th>
       <th>Image</th>
+
   
       
     </tr>
@@ -35,6 +37,10 @@
         <td> {{totalrate}}</td>
         <td>{{ project.start_date }}</td>
         <td>{{ project.end_date }}</td>
+        <td>
+              {% for tag in tags %}<p> {{tag.name}}     </p>
+                <hr>
+                {% endfor %}
         <td>{{ project.creator }}</td>
 
         <td>

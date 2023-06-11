@@ -48,11 +48,8 @@ def projectAdd(request):
             end_date=end_date
         )
         images = request.FILES.getlist('images')
-        print("*****************************************************************8")
-        print(images)
-        print("*****************************************************************8")
         for imag in images:
-            print(imag)
+        
             photo = Photo.objects.create(
                 project=project,
                 image=imag,
@@ -99,7 +96,6 @@ def projectView(request,ID):
     donations= Donation.objects.filter(project=ID)
     totaldonation=0
     for  donation in donations:
-        print(donation.amount)
         totaldonation=totaldonation+donation.amount
     context['totaldonation']=totaldonation
     
@@ -110,13 +106,15 @@ def projectView(request,ID):
     if len(rates)>0:
         totalrate=totalrate/(len(rates)*5)
     context['totalrate']=totalrate
+    
+    tags=project.tags.filter(project=ID)
+    context['tags']=tags
     return  render(request,'project/viewproject.html',context)
     
 
 def addComment(request,ID):
 
     if request.method == 'POST':
-        print("here")
         comment = request.POST['comment']
         project = Project.objects.get(id=ID)
         user=user_reg.objects.get(id="1")
