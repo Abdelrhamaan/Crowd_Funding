@@ -1,0 +1,7 @@
+
+
+{%for user in logged_in_user%}
+
+<h1>welcome {{user.first_name}} </h1>
+<img src="{{user.profile_pic.url}}" alt="">
+{%endfor%}

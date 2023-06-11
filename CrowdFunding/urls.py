@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-# from myaccount.views import *
+from myaccount.views import *
 from django.conf.urls.static import static  # new
 from django.conf import settings  # new
 
@@ -24,9 +24,17 @@ from django.conf import settings  # new
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('project/',include('projects.urls')),
+    path('project/',include('projects.urls')),
     # path('',Login,name='Login'),
     # path('Logout',Logout,name='Logout'),
     # path('Registration',Registration,name='Registration'),
     # path('List',userlist,name='userlist'),
+    
+    path ('login' , Login , name = 'Login') ,
+    path('' , user_register , name = 'user_register'),
+    path('userinfo/<int:id>' , user_info , name= 'user_info'),
+    path('myview' , my_view , name ='my_view')
+
 ]
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #new
