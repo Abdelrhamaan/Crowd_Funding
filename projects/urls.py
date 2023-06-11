@@ -10,6 +10,7 @@ urlpatterns = [
     path('Delete/<int:ID>',projectDelete,name='projectDelete'),
     path("UserProject",userProject,name="userProject"),
     path("view/<int:ID>",projectView,name="projectView"),
-    path("view/donate/<int:ID>",addDonation,name="addDonation"),
-    path("view/comment/<int:ID>",addComment,name="addComment"),
+    path("donate/<int:ID>",addDonation,name="addDonation"),
+    path("comment/<int:ID>",addComment,name="addComment"),
+    path("rate/<int:ID>",addRate,name="addRate"),
 ]

@@ -95,28 +95,32 @@ def projectView(request,ID):
     context['images']=images
     comments = Comment.objects.filter(project=ID)
     context['comments'] = comments
+    
     donations= Donation.objects.filter(project=ID)
-    print("*****************************************************************8")
     totaldonation=0
     for  donation in donations:
         print(donation.amount)
         totaldonation=totaldonation+donation.amount
     context['totaldonation']=totaldonation
+    
+    rates= Rate.objects.filter(project=ID)
+    totalrate=0
+    for rate in rates:
+        totalrate=totalrate+rate.rate
+    if len(rates)>0:
+        totalrate=totalrate/(len(rates)*5)
+    context['totalrate']=totalrate
     return  render(request,'project/viewproject.html',context)
     
 
 def addComment(request,ID):
-    print ("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-    if request.method == 'POST':
-        print("****************************")
 
+    if request.method == 'POST':
         print("here")
         comment = request.POST['comment']
         project = Project.objects.get(id=ID)
         user=user_reg.objects.get(id="1")
         # user = request.session['username']
-        print("****************************")
-        print(user.id)
         # user = user_reg.objects.get(username=user)
         Comment.objects.create(
             project=project,
@@ -144,4 +148,19 @@ def addDonation(request,ID):
         return redirect('projectView', ID=ID)
 
 
+def addRate(request,ID):
+    if request.method == 'POST':
     
+        rate = request.POST['rate']
+        project = Project.objects.get(id=ID)
+        user=user_reg.objects.get(id="1")
+        # user = request.session['username']
+        # user = user_reg.objects.get(username=user)
+        Rate.objects.create(
+            project=project,
+            user=user,
+            rate=int (rate)
+        )
+        return redirect('projectView', ID=ID)
+    else:
+        return redirect('projectView', ID=ID)
