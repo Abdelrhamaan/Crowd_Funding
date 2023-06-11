@@ -20,16 +20,19 @@
       <th>end_date</th>
       <th>creator</th>
       <th>Image</th>
+      <th>Delete</th>
+      <th> View</th>
     </tr>
     {% for project in projects %}
       <tr>
-        <td>{{ project.project_id }}</td>
+        <td>{{ project.id }}</td>
         <td>{{ project.title }}</td>
         <td>{{ project.details }}</td>
         <td>{{ project.target }}</td>
         <td>{{ project.start_date }}</td>
         <td>{{ project.end_date }}</td>
         <td>{{ project.creator }}</td>
+        
         {% comment %} {% for images in images[project] %} {% endcomment %}
         <td>
           {% for x, imagess in images.items %}
@@ -39,10 +42,8 @@
           {% endfor %}
         </td>
         {% comment %} {% endfor %} {% endcomment %}
-        <td>
-          {% comment %} <a href="{% url 'projectDelete' project.project_id %}">Delete</a> {% endcomment %}
-          {% comment %} <a href="{% url 'projectupdate' project.project_id %}">update</a> {% endcomment %}
-        </td>
+        <td><a href="{% url 'projectDelete' project.id %}">Delete</a></td>
+
       </tr>
     {% endfor %}
   </table>
