@@ -1,0 +1,27 @@
+{% extends 'parent.html' %}
+{% block tit %}trainees _ List{% endblock %}
+{% block header %}trainees _ List{% endblock %}
+{% block content %}
+  {{ trainees }}
+  <h1>{{ 1 | add:2 }}</h1>
+  <table width="100%" border="1">
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>email</th>
+      <th>course</th>
+    </tr>
+    {% for trainee in trainees %}
+      <tr>
+        <td>{{ trainee.trainee_id }}</td>
+        <td>{{ trainee.trainee_name }}</td>
+        <td>{{ trainee.email }}</td>
+        <td>{{ trainee.course_id.name }}</td>
+        <td>
+          <a href="{% url 'traineeDelete' trainee.trainee_id %}">Delete</a> 
+          <a href="{% url 'traineeupdate' trainee.trainee_id %}">update</a> 
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
