@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path,include
 from myaccount.views import *
 from django.conf.urls.static import static  # new
-from django.conf import settings  # new
+from django.conf import settings  # ne
+
 
 
 urlpatterns = [
@@ -33,7 +34,8 @@ urlpatterns = [
     path ('login' , Login , name = 'Login') ,
     path('' , user_register , name = 'user_register'),
     path('userinfo/<int:id>' , user_info , name= 'user_info'),
-    path('myview' , my_view , name ='my_view')
+
+    path('profileedit/<int:pk>' , profile_edit.as_view(),name ='profile_edit')
 
 ]
 

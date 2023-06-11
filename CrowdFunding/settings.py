@@ -78,13 +78,12 @@ WSGI_APPLICATION = 'CrowdFunding.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME': 'crowd funding',
-        'USER': 'openpg',
-        'PASSWORD': 'openpgpwd',
-        'HOST': '127.0.0.1',
-        'PORT': '5432'
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "crowdfund",
+        "USER": "postgres",
+        "PASSWORD": "01064173376",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
     }
 }
 

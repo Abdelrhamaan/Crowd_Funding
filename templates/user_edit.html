@@ -1,0 +1,31 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>user edit</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<form>-->
+<!--    <input type="text"  placeholder="enter your first name " name = 'firstname'>-->
+<!--    <br>-->
+<!--    <input type="text" placeholder="enter your last name" name = 'lastname'>-->
+<!--    <br>-->
+<!--    <input type="text"  placeholder="enter you phone number " name = 'phonenum'>-->
+<!--    <br>-->
+<!--        <input type="text"  placeholder="enter you country " name = 'country'>-->
+<!--    <br>-->
+<!--        <input type="text"  placeholder="enter your facebook profile " name = 'fb'>-->
+<!--    <br>-->
+<!--    <input type="date"  placeholder="enter your birth date " name = 'birthdate'>-->
+<!--    <br>-->
+<!--    <input type="submit">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+<form method="post"     enctype="multipart/form-data">
+{% csrf_token %}
+{{form.as_p}}
+    <input type="submit">
+    </form>
+

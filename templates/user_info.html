@@ -3,5 +3,7 @@
 {%for user in logged_in_user%}
 
 <h1>welcome {{user.first_name}} </h1>
-<img src="{{user.profile_pic.url}}" alt="">
+
+<img width="300px" src="{{user.profile_pic.url}}" alt="">
 {%endfor%}
+<a> edit your profile  </a>
