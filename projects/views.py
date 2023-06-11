@@ -51,11 +51,11 @@ def projectAdd(request):
         print("*****************************************************************8")
         print(images)
         print("*****************************************************************8")
-        for imag in images:
-            print(imag)
+        for image in images:
+            print(image)
             photo = Photo.objects.create(
                 project=project,
-                image=imag,
+                image=image,
 
             )
         project.tags.set(tags)
@@ -64,3 +64,28 @@ def projectAdd(request):
         categories = Category.objects.all()
         tags = Tag.objects.all()
         return render(request, 'project/add.html', {'categories': categories, 'tags': tags})
+    
+
+def projectDelete(request,ID):
+    project=Project.objects.get(id=ID)
+    project.delete()
+    return redirect('projectlist')
+
+def projectUpdate(request,ID):
+ pass
+    
+    
+def UserProject(request):
+        # if( 'username' in request.session):
+    projects=Project.objects.all()
+    images={}
+    for project in projects:
+        images[project]=Photo.objects.filter(project=project)
+    # print(images[project][0].image.url)
+        
+    context={}
+    context['projects']=projects
+    context['images']=images
+    
+    return  render(request,'project/userproject.html',context)
+
