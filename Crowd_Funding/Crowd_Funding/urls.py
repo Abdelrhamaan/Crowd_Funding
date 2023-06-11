@@ -24,6 +24,9 @@ from myaccount.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path ('login' , Login , name = 'Login') ,
-    path('register' , user_register , name = 'user_register')
+    path('' , user_register , name = 'user_register'),
+    path('userinfo/<int:id>' , user_info , name= 'user_info'),
+    path('myview' , my_view , name ='my_view')
+
 ]
-urlpatterns += static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)

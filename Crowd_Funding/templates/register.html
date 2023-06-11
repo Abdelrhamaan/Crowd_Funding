@@ -54,7 +54,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
+                                                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" name="confirm_pass" />
                                                         <label for="inputPasswordConfirm">Confirm Password</label>
                                                     </div>
                                                 </div>
@@ -63,10 +63,14 @@
                                                 <div class="d-grid"><input class="btn btn-danger btn-block" type="file"  value="Upload profile pic" name="pic"></div>
                                                 <div class="d-grid"><input class="btn btn-danger btn-block" type="submit" value="Create Account"></div>
                                             </div>
+
                                         </form>
+                                          <div style="background-color : red" >
+                                                {{notmatch}}
+                                            </div>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="login.html">Have an account? Go to login</a></div>
+                                        <div class="small"> <a href="{%url 'Login'%}" >Have an account? Go to login</a></div>
                                     </div>
                                 </div>
                             </div>

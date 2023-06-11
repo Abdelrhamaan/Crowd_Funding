@@ -7,7 +7,7 @@ class user_reg(models.Model):
     email=models.EmailField(max_length=100 , unique=True)
     phone_num=models.CharField(max_length=11)
     password = models.CharField(max_length=16)
-    profile_pic=models.ImageField()
+    profile_pic=models.ImageField(upload_to='static/images/')
     birth_date=models.DateField(null=True)
     fb_profile=models.CharField(null=True)
     activated = models.BooleanField(null=True)
