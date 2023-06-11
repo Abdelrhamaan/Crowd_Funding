@@ -51,11 +51,11 @@ def projectAdd(request):
         print("*****************************************************************8")
         print(images)
         print("*****************************************************************8")
-        for image in images:
-            print(image)
+        for imag in images:
+            print(imag)
             photo = Photo.objects.create(
                 project=project,
-                image=image,
+                image=imag,
 
             )
         project.tags.set(tags)
