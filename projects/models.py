@@ -39,3 +39,8 @@ class Report(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     user = models.ForeignKey(user_reg, on_delete=models.CASCADE)
     report = models.BooleanField(default=False)
+
+class Rate(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(user_reg, on_delete=models.CASCADE)
+    rate = models.IntegerField(default=0)

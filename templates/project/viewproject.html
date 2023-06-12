@@ -1,0 +1,103 @@
+{% extends 'parent.html' %}
+{% block tit %}projects _ List{% endblock %}
+{% block header %}projects _ List{% endblock %}
+{% block content %}
+  {{ projects }}
+  <h1>{{ 1 | add:2 }}</h1>
+  <table width="100%" border="1">
+    <tr>
+      {% comment %} title = models.CharField(max_length=200)
+    details = models.TextField()
+    target_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+      creator = models.CharField(max_length=200) {% endcomment %}
+      <th>ID</th>
+      <th>title</th>
+      <th>details</th>
+      <th>Target amount</th>
+      <th>Total Donation</th>
+      <th>Total Rate</th>
+      <th>start_date</th>
+      <th>end_date</th>
+      <th> Tags</th>
+      <th>creator</th>
+      <th>Image</th>
+
+  
+      
+    </tr>
+    
+      <tr>
+        <td>{{ project.id }}</td>
+        <td>{{ project.title }}</td>
+        <td>{{ project.details }}</td>
+        <td>{{ project.target }}</td>
+        <td> {{totaldonation }}</td>
+        <td> {{totalrate}}</td>
+        <td>{{ project.start_date }}</td>
+        <td>{{ project.end_date }}</td>
+        <td>
+              {% for tag in tags %}<p> {{tag.name}}     </p>
+                <hr>
+                {% endfor %}
+        <td>{{ project.creator }}</td>
+
+        <td>
+          
+          
+              {% for imag in images %}<img src="{{ imag.image.url }}" alt="My Image">{% endfor %}
+        
+        </td>
+    
+        
+      </tr>
+
+      
+    
+  </table>
+<h2>comments</h2>
+
+                {% for comment in comments %}<p> {{comment.comment}}     </p>
+                <hr>
+                {% endfor %}
+
+<h2>add comment</h2>
+    <form method="POST" action= "{% url 'addComment' project.id %}" >
+        {% csrf_token %}
+        <label for="comment">  comment</label>
+        <input type="text" name="comment" >
+        <br>
+        <input type="submit" value="add">
+        <br>
+    </form>
+
+    <h2>donate</h2>
+    <form method="POST" action= "{% url 'addDonation' project.id %}" >
+        {% csrf_token %}
+        <label for="amount">  donate</label>
+        <input type="number" name="amount" >
+        <br>
+        <input type="submit" value="add">
+        <br>
+    </form>
+
+
+    <h2>Add Rate</h2>
+    <form method="POST" action= "{% url 'addRate' project.id %}" >
+        {% csrf_token %}
+        <label for="Rate">  Add Rate</label>
+        <label>Rate:</label>
+            <input type="radio" name="rate" value="1" id="rating1" /><label for="rate">1</label>
+            <input type="radio" name="rate" value="2" id="rating2" /><label for="rate">2</label>
+            <input type="radio" name="rate" value="3" id="rating3" /><label for="rate">3</label>
+            <input type="radio" name="rate" value="4" id="rating4" /><label for="rate">4</label>
+            <input type="radio" name="rate" value="5" id="rating5" /><label for="rate">5</label>
+        <br>
+        <input type="submit" value="add">
+        <br>
+    </form>
+{% endblock content %}
+
+<!-- <input type="number" id="tentacles" name="tentacles"
+       min="10" max="100"> -->
