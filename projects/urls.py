@@ -13,4 +13,5 @@ urlpatterns = [
     path("donate/<int:ID>",addDonation,name="addDonation"),
     path("comment/<int:ID>",addComment,name="addComment"),
     path("rate/<int:ID>",addRate,name="addRate"),
+    path("report/<int:ID>",addReport,name="addreport"),
 ]

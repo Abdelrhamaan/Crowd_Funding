@@ -6,7 +6,18 @@ class Tag(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
-
+    
+    
+    
+# first_name = "moustafa"
+# last_name = "shahin"
+# email = "moustafashahin@outlook.com"
+# password = 123
+# user_default = user_reg(first_name=first_name)
+# user_default.last_name= last_name
+# user_default.email = email
+# user_default.password = password
+# user_default.save()
 
 class Project(models.Model):
     title = models.CharField(max_length=100)
@@ -17,7 +28,7 @@ class Project(models.Model):
     pub_date = models.DateTimeField()
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    owner=models.ForeignKey(user_reg, on_delete=models.CASCADE,default=1)
+    owner=models.ForeignKey(user_reg, on_delete=models.CASCADE,default=4)
 
 class Photo(models.Model):
     

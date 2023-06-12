@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body p-3 m-0 border-0 bd-example m-0 border-0 bd-example-row>
+
+    <!-- Bootstrap 5 form -->
+
+    <div class="container-md ">
+
+    <h1>To create project you have to fill the below form</h1>
+    <form  action="">
+        <div class="mb-3 form-group">
+            <label for="project_title" class="form-label">Project Title</label>
+            <input type="text" class="form-control" id="project_title" placeholder="Enter project title" required>
+        </div>
+        <div class="mb-3 form-group">
+            <label for="project_detalis" class="form-label">Project Details</label>
+            <textarea class="form-control" id="project_details" rows="3" required></textarea>
+        </div>
+        <div class="mb-3 form-group">
+            <label for="project_category" class="form-label">Project Category</label>
+            <select class="form-control" id="project_category" required>
+                <option disabled selected value> -- select a category from list -- </option>                <option>Web Development</option>
+                <option>Mobile Development</option>
+                <option>Desktop Development</option>
+            </select>
+        </div>
+
+        <div class="mb-3 form-group">
+            <label for="project_images" class="form-label">Project Images</label>
+            <input type="file" class="form-control" id="project_images" multiple required>
+        </div>
+        <div class="input-group mb-3 form-group">
+            <span class="input-group-text">$</span>
+            <div class="form-floating">
+                <input type="number" class="form-control" id="project_total_target" min="1" placeholder="Enter Project Total Target" required>
+                <label for="project_total_target" class="form-label">Enter Project Total Target</label>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group">
+            <label for="project_tags" class="form-label">Project Tags</label>
+            <input type="text" class="form-control" id="project_tags" placeholder="Enter project tags separated by a space" list="project_exists_tags" required>
+            <datalist id="project_exists_tags">
+              <option>Volvo</option>
+              <option>Saab</option>
+              <option>Mercedes</option>
+              <option>Audi</option>
+            </datalist>
+
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Create Project</button>
+    </form>
+
+</div>
+    
+
+   <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

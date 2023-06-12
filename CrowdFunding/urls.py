@@ -24,7 +24,6 @@ from django.conf import settings  # new
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('project/',include('projects.urls')),
-    path('project/',include('projects.urls')),
     # path('',Login,name='Login'),
     # path('Logout',Logout,name='Logout'),
     # path('Registration',Registration,name='Registration'),
