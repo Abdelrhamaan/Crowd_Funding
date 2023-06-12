@@ -60,7 +60,7 @@ def projectAdd(request):
     else:
         categories = Category.objects.all()
         tags = Tag.objects.all()
-        return render(request, 'project/add.html', {'categories': categories, 'tags': tags})
+        return render(request, 'project/create_project.html', {'categories': categories, 'tags': tags})
     
 def projectDelete(request,ID):
     project=Project.objects.get(id=ID)
@@ -99,6 +99,7 @@ def projectView(request,ID):
         totaldonation=totaldonation+donation.amount
     context['totaldonation']=totaldonation
     context['remainingAmout']=project.target - totaldonation
+    context['donateRatio']=totaldonation/project.target *100
     
     rates= Rate.objects.filter(project=ID)
     totalrate=0
@@ -107,6 +108,7 @@ def projectView(request,ID):
     if len(rates)>0:
         totalrate=totalrate/(len(rates))
     context['totalrate']=totalrate
+    context['rateRatio']=totalrate/5*100
     
     tags=project.tags.filter(project=ID)
     context['tags']=tags
@@ -116,8 +118,18 @@ def projectView(request,ID):
     context['reports'] = reports
     
     
-    get_similar_projects(ID)
-    return  render(request,'project/viewproject.html',context)
+    
+    projects_similar=get_similar_projects(ID)
+    images_similar={}
+    for project in projects_similar:
+        images_similar[project]=Photo.objects.filter(project=project)
+    # print(images[project][0].image.url)
+        
+    
+    context['projects_similar']=projects_similar
+    context['images_similar']=images_similar
+    
+    return  render(request,'project/project_page.html',context)
     
 
 def addComment(request,ID):
@@ -167,11 +179,17 @@ def addRate(request,ID):
         user=user_reg.objects.get(id="4")
         # user = request.session['username']
         # user = user_reg.objects.get(username=user)
-        Rate.objects.create(
-            project=project,
-            user=user,
-            rate=int (rate)
-        )
+        preRates=Rate.objects.filter(project=project)
+        cond =True
+        for rate in preRates:
+            if rate.user ==user:
+                cond=False 
+        if cond:
+            Rate.objects.create(
+                project=project,
+                user=user,
+                rate=int (rate)
+            )
         return redirect('projectView', ID=ID)
     else:
         return redirect('projectView', ID=ID)
