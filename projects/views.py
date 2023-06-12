@@ -114,6 +114,9 @@ def projectView(request,ID):
     
     reports = Report.objects.filter(project=ID)
     context['reports'] = reports
+    
+    
+    get_similar_projects(ID)
     return  render(request,'project/viewproject.html',context)
     
 
@@ -172,6 +175,8 @@ def addRate(request,ID):
         return redirect('projectView', ID=ID)
     else:
         return redirect('projectView', ID=ID)
+    
+    
 def addReport(request,ID):
     if request.method == 'POST':
     
@@ -193,3 +198,15 @@ def addReport(request,ID):
         return redirect('projectView', ID=ID)
     else:
         return redirect('projectView', ID=ID)
+
+
+def get_similar_projects(id):
+    project = Project.objects.get(id=id)
+    tags = project.tags.filter(project=id)
+    similar_projects = []
+    for tag in tags:
+        similar_projects += tag.project_set.all()
+    similar_projects = list(set(similar_projects))
+    similar_projects.remove(project)
+    print(similar_projects)
+    return similar_projects
