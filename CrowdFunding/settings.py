@@ -27,6 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your-gmail-username@gmail.com'
+# EMAIL_HOST_PASSWORD = 'your-gmail-password'
+
 
 # Application definition
 
@@ -39,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myaccount',
     'projects',
+    'widget_tweaks'
 
 ]
 
@@ -80,7 +88,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         # 'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME': 'crowd funding',
+        'NAME': 'crowd_funding',
         'USER': 'openpg',
         'PASSWORD': 'openpgpwd',
         'HOST': '127.0.0.1',
@@ -132,3 +140,6 @@ STATICFILES_DIRS = [BASE_DIR/'static']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR/'media'
 MEDIA_URL = '/media/'
+
+# LOGIN_REDIRECT_URL = 'user_info'
+# LOGIN_URL = 'user_info'

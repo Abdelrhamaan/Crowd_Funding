@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from myaccount.views import *
 from django.conf.urls.static import static  # new
 from django.conf import settings  # new
@@ -23,18 +23,16 @@ from django.conf import settings  # new
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('project/',include('projects.urls')),
-    path('project/',include('projects.urls')),
-    # path('',Login,name='Login'),
-    # path('Logout',Logout,name='Logout'),
-    # path('Registration',Registration,name='Registration'),
-    # path('List',userlist,name='userlist'),
-    
-    path ('login' , Login , name = 'Login') ,
-    path('' , user_register , name = 'user_register'),
-    path('userinfo/<int:id>' , user_info , name= 'user_info'),
-    path('myview' , my_view , name ='my_view')
-
+    path('project/', include('projects.urls')),
+    path('project/', include('projects.urls')),
+    path('login', Login, name='Login'),
+    path('Logout', Logout, name='Logout'),
+    path('register', user_register, name='user_register'),
+    path('userinfo/<int:id>', user_info, name='user_info'),
+    # path('myview', my_view, name='my_view'),
+    path('delete_account/<int:pk>', DeleteUser.as_view(), name='delete_account'),
+    path('profileedit/<int:pk>', profile_edit.as_view(), name='profile_edit'),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #new
+urlpatterns += static(settings.MEDIA_URL,
+                      document_root=settings.MEDIA_ROOT)  # new
