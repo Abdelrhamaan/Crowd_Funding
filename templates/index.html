@@ -1,0 +1,135 @@
+
+{% extends 'navbar.html' %}
+
+{% block slider %}
+  
+
+    
+   <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-inner">
+
+    
+    {% for project in  projects_rated %}
+  
+    <div class="carousel-item active">
+    
+      
+
+      <a href="#">
+      <img src="https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp" class="d-block w-100" alt="...">
+      
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ project.title }}</h5>
+        <p>{{ project.details }}</p>
+      </div>
+    </a>
+ 
+    </div>
+
+    {% endfor %}
+
+   
+
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+{% endblock %}                  
+
+    <!-- End  carousel -->
+    <!-- Start Section 1  cards  -->
+
+    {% block content %}
+   
+
+    <div class="container mt-5"> 
+
+    <h2> Latest Projects </h2>
+<div class="container latest-projects mt-5">
+        <div class="row mt-3">
+          {% for project in  projects_recent %}
+          <div class="col-3">
+            <div class="card">
+              <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ project.title }}</h5>
+                <p class="card-text">{{ project.details }}</p>
+                <a href="#" class="btn btn-primary">View Project</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+
+        </div>
+      </div>
+<a class="row m-3" href="#">Show more Projects</a>
+
+   </div>
+    <!-- End Section 1 cards  -->
+    <!-- Start Section 2  cards  -->
+    
+    <div class="container mt-5"> 
+
+    <h2> Featured Projects </h2>
+<div class="container latest-projects mt-5">
+        <div class="row mt-3">
+          <div class="col-3">
+            <div class="card">
+              <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Project Name</h5>
+                <p class="card-text">Project Description</p>
+                <a href="#" class="btn btn-primary">View Project</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Project Name</h5>
+                <p class="card-text">Project Description</p>
+                <a href="#" class="btn btn-primary">View Project</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Project Name</h5>
+                <p class="card-text">Project Description</p>
+                <a href="#" class="btn btn-primary">View Project</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Project Name</h5>
+                <p class="card-text">Project Description</p>
+                <a href="#" class="btn btn-primary">View Project</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+        <a class="row m-3" href="#">Show more Projects</a>
+
+   </div>
+
+   {% endblock %}
+    <!-- End Section 2 cards  -->
+
+      <!-- Start Footer -->

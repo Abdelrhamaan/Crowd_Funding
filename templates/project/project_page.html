@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+          rel="stylesheet">
+    <title>Bootstrap Example</title>
+  </head>
+  <body p-3 m-0 border-0 bd-example m-0 border-0 bd-example-row>
+    <div class="container-md p-5 pb-0">
+      <div class="row gx-5">
+        <div class="col-8">
+          <h1>{{ project.title }}</h1>
+          <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-inner">
+              {% for imag in images %}
+                {% comment %} <img src="{{ imag.image.url }}" alt="My Image"> {% endcomment %}
+                <div class="carousel-item active">
+                  <img src="{{ imag.image.url }}"
+                       alt="My Image"
+                       class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
+                       width="800"
+                       height="400">
+                  {% comment %} <title>Placeholder</title><rect width="100%" height="100%" fill="#555"></rect><text x="50%" y="50%" fill="#333" dy=".3em">Third slide</text> {% endcomment %}
+                </div>
+              {% endfor %}
+              <button class="carousel-control-prev"
+                      type="button"
+                      data-bs-target="#carouselExampleRide"
+                      data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next"
+                      type="button"
+                      data-bs-target="#carouselExampleRide"
+                      data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+            <div class="project-tags mt-3">
+              <a class="text-light bg-dark p-2 m-1" href="">Technology</a>
+              <a class="text-light bg-dark p-2 m-1" href="">Gaming</a>
+              <a class="text-light bg-dark p-2 m-1" href="">Entertainment</a>
+            </div>
+            <div class="project-detailes mt-3">
+              <p>{{ project.details }}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="project-comments mt-3">
+            <h3>Comments</h3>
+            <div class="comment-form p-3">
+              <form method="POST" action="{% url 'addComment' ID=project.id %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Enter a comment</label>
+                  <textarea class="form-control"
+                            id="exampleFormControlTextarea1"
+                            rows="3"
+                            name="comment"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+            <div class="comments mt-3 p-3">
+              {% for comment in comments %}
+                <div class="comment pt-5">
+                  <div class="comment-header">
+                    <img src="{{ comment.user.profile_pic.url }}"
+                         class="img-profile "
+                         style="height:80px;
+                                width:80px;
+                                border-radius:50%"
+                         alt="">
+                    <span class="comment-name">{{ comment.user.first_name }} {{ comment.user.first_name }}</span>
+                  </div>
+                  <div class="comment-body">
+                    <p>{{ comment.comment }}</p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="col-4 text-center">
+          <aside>
+            <div class="container-sm">
+              <div class="progress-data pt-5 mt-5">
+                <div class="progress"
+                     role="progressbar"
+                     aria-label="Animated striped example"
+                     aria-valuenow="10"
+                     aria-valuemin="0"
+                     aria-valuemax="20">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated"
+                       style="width: {{ donateRatio }}%"></div>
+                </div>
+                <p>
+                  <span id="current_budget" style="color: #0d6efd;">${{ totaldonation }}</span> / <span id="total_target"style="color: #bdbdbd;">${{ project.target }}</span>
+                </p>
+              </div>
+              <div id="project_donate" class="p-3">
+                <form method="POST" action="{% url 'addDonation' project.id %}">
+                  {% csrf_token %}
+                  <div class="input-group mb-3 form-group">
+                    <span class="input-group-text">$</span>
+                    <div class="form-floating">
+                      <input type="number"
+                             name="amount"
+                             min="0"
+                             max="{{ remainingAmout }}"
+                             class="form-control"
+                             id="project_total_target"
+                             placeholder="Enter Project Total Target"
+                             required>
+                      <label for="project_total_target" class="form-label">Enter Donate value</label>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary mb-3">Donate</button>
+                </form>
+              </div>
+              <hr>
+              <div id="project_rate" class="p-3">
+                <!-- star rate -->
+                <div id="rating-result" class="mt-3">
+                  <p>Average Rating</p>
+                  <div class="progress"
+                       role="progressbar"
+                       aria-label="Rating"
+                       aria-valuenow="75"
+                       aria-valuemin="0"
+                       aria-valuemax="100">
+                    <div class="progress-bar" style="width: {{ rateRatio }}%"></div>
+                  </div>
+                  <p>{{ totalrate }}</p>
+                </div>
+                <div id="rating" class="mt-5">
+                  <h5>Rate this project</h5>
+                  <p>Rate this project from 1 to 5</p>
+                  <form method="POST" action= "{% url 'addRate' project.id %}">
+                    {% csrf_token %}
+                    <input type="radio" id="star5" name="rate" value="1" />
+                    <label for="star5" title="text">1</label>
+                    <input type="radio" id="star4" name="rate" value="2" />
+                    <label for="star4" title="text">2</label>
+                    <input type="radio" id="star3" name="rate" value="3" />
+                    <label for="star3" title="text">3</label>
+                    <input type="radio" id="star2" name="rate" value="4" />
+                    <label for="star2" title="text">4</label>
+                    <input type="radio" id="star1" name="rate" value="5" />
+                    <label for="star1" title="text">5</label>
+                    <br>
+                    <button type="submit" class="btn btn-primary m-4">Rate</button>
+                  </form>
+                </div>
+              </div>
+              <hr>
+              <h2>reports</h2>
+              {% for report in reports %}
+                <p>{{ report.user.email }}  has reported this project</p>
+                <hr>
+              {% endfor %}
+              <a href="{% url 'addreport' project.id %}"
+                 class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Report as inappropriate</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <hr class="mt-5">
+    </div>
+    <div class="container similar-projects mt-5">
+      <h3>Similar Projects</h3>
+      <div class="row mt-3">
+        {% for project_similar in projects_similar %}
+          <div class="col-3">
+            <div class="card">
+              {% for x, imagess in images_similar.items %}
+                {% if x == project_similar %}<img src="{{ imagess.first.image.url }}" alt="My Image">{% endif %}
+              {% endfor %}
+              <div class="card-body">
+                <h5 class="card-title">{{ project_similar.title }}</h5>
+                <p class="card-text">{{ project_similar.details }}</p>
+                <a href="#" class="btn btn-primary">View Project</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>

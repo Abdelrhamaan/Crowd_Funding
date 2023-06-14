@@ -1,0 +1,19 @@
+
+
+<!-- account_settings.html -->
+
+{% extends 'parent.html' %}
+
+
+{% block content %}
+<h2>Account Settings</h2>
+<p>Manage your account settings below:</p>
+Other account settings options here
+<a href="{% url 'Logout' %}"> <button type="submit" class="btn btn-danger">Logout</button> </a>
+{%for user in logged_in_user%} 
+   <a href="{% url 'delete_account' user.pk %}"><button type="submit" class="btn btn-danger">Delete my account</button></a>
+   <a href="{%url 'profile_edit' user.id%}"> <button type="submit" class="btn btn-danger">Edit my account</button>  </a>
+   <h1>welcome {{user.first_name}} </h1>
+   <img src="{{user.profile_pic.url}}" alt="">
+   {%endfor%}
+   {% endblock %} 
